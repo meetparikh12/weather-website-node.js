@@ -3,6 +3,7 @@ const request = require('request')
 const forecast = require('./utils/forecast')
 const geocode = require('./utils/geocode')
 const app = express()
+const port = process.env.PORT || 3000
 const path = require('path')
 const hbs = require('hbs')
 const publicPath = path.join(__dirname,'../public')
@@ -46,12 +47,6 @@ app.get('/weather', (req,res) => {
             })
         })
     })
-    
-    // res.send({
-    //     forecast: 'Humidity',
-    //     location: 'India',
-    //     address: req.query.address
-    // })
 })
 
 app.get('/about', (req,res) => {
@@ -74,6 +69,6 @@ app.get('*', (req,res) => {
         errorMessage: 'Page not found.'
     })
 })
-app.listen(3000, () => {
-    console.log('Server started!')
+app.listen(port, () => {
+    console.log('Server is up on port ' +port)
 })
